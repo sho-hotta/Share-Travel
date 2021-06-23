@@ -1,0 +1,43 @@
+// universal
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+
+// header
+
+header {
+
+  .container {
+
+    nav {
+
+      .nav {
+        display: flex;
+        height: 2rem;
+        margin: 0 auto;
+
+        .li {
+          width: 25%;
+          position: relative;
+
+          a {
+            background-color: #001b34;
+            border-right: 1px solid #eee;
+            color: #fff;
+            display: block;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
