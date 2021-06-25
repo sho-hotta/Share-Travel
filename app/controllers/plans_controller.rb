@@ -3,7 +3,9 @@ class PlansController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @plan = Plan.new
+  end
 
   def edit; end
 end

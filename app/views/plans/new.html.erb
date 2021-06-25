@@ -1,2 +1,15 @@
-<h1>Plans#new</h1>
-<p>Find me in app/views/plans/new.html.erb</p>
+<h1>プラン投稿</h1>
+
+<%= form_with model: @plan, local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :region %>
+    <%= f.select :region, options_for_select(Plan.regions) %>
+    <%= f.label :prefecture %>
+    <%= f.select :prefecture, options_for_select(Plan.prefectures) %>
+  </div>
+  <%= f.submit '投稿' %>
+<% end %>
