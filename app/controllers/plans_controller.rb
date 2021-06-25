@@ -7,6 +7,7 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
+    @destination = @plan.destinations.build
   end
 
   def create
