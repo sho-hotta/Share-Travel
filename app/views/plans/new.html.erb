@@ -14,7 +14,9 @@
       <%= f.select :prefecture, options_for_select(Plan.prefectures.keys) %>
     </div>
   </div>
+  <% n = 0 %>
   <%= f.fields_for :destinations do |destination| %>
+    <h2>目的地<%= n += 1 %></h2>
     <div>
       <%= destination.label :name %>
       <%= destination.text_field :name %>
