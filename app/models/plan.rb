@@ -7,7 +7,6 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :destinations, allow_destroy: true
   belongs_to :user
 
-  validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 30 }
   validates :region, presence: true
   validates :prefecture, presence: true
