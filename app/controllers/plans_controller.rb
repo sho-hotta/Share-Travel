@@ -25,6 +25,6 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:title, :region, :prefecture)
+    params.require(:plan).permit(:title, :region, :prefecture, destinations_attributes: %i[name description _destroy id])
   end
 end
