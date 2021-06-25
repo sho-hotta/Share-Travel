@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_065418) do
+ActiveRecord::Schema.define(version: 2021_06_25_090616) do
 
   create_table "destinations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", limit: 30, null: false
     t.text "description"
     t.string "image"
     t.bigint "plan_id", null: false
