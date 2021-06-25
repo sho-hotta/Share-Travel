@@ -7,9 +7,9 @@
   </div>
   <div>
     <%= f.label :region %>
-    <%= f.select :region, options_for_select(Plan.regions) %>
+    <%= f.select :region, options_for_select(Plan.regions.keys) %>
     <%= f.label :prefecture %>
-    <%= f.select :prefecture, options_for_select(Plan.prefectures) %>
+    <%= f.select :prefecture, options_for_select(Plan.prefectures.keys) %>
   </div>
   <%= f.submit '投稿' %>
 <% end %>

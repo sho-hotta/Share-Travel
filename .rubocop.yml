@@ -62,6 +62,7 @@ Metrics/LineLength:
   Max: 160
   Exclude:
     - "db/migrate/*.rb"
+    - "app/models/plan.rb"
 
 # メソッドの行数
 Metrics/MethodLength:
