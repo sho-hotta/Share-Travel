@@ -51,7 +51,7 @@ RSpec.describe Plan, type: :model do
   end
 
   context 'dependent: :destroy' do
-    it '機能する' do
+    it 'ユーザー削除時に関連したプランも削除される' do
       expect do
         @user.destroy
       end.to change { Plan.count }.by(-1)

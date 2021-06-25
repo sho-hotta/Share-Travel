@@ -22,7 +22,13 @@ RSpec.describe Destination, type: :model do
       expect(@destination).to be_invalid
     end
 
-    it 'nameが存在すれば有効' do
+    it 'nameが31文字以上であれば無効' do
+      @destination.name = 'a' * 31
+      expect(@destination).to be_invalid
+    end
+
+    it 'nameが30文字以内であれば有効' do
+      @destination.name = 'a' * 30
       expect(@destination).to be_valid
     end
 
