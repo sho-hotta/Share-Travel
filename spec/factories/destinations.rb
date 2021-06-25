@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :destination do
-    name { 'MyString' }
-    description { 'MyText' }
-    image { 'MyString' }
-    plan { nil }
+    name { '浅草' }
+    description { '浅草の説明' }
+    plan
   end
 end
