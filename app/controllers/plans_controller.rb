@@ -7,7 +7,7 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
-    2.times { @plan.destinations.build }
+    @plan.destinations.build
   end
 
   def create

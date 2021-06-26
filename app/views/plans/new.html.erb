@@ -14,17 +14,53 @@
       <%= f.select :prefecture, options_for_select(Plan.prefectures.keys) %>
     </div>
   </div>
-  <% n = 0 %>
   <%= f.fields_for :destinations do |destination| %>
-    <h2>目的地<%= n += 1 %></h2>
-    <div>
-      <%= destination.label :name %>
-      <%= destination.text_field :name %>
+    <div id='plan-form'>
+      <div>
+        <%= destination.label :name %>
+        <%= destination.text_field :name %>
+      </div>
+      <div>
+        <%= destination.label :description %>
+        <%= destination.text_area :description %>
+      </div>
     </div>
-    <div>
-      <%= destination.label :description %>
-      <%= destination.text_area :description %>
-    </div>
+    <input type='button' value='フォーム追加' onclick='addForm()'>
   <% end %>
   <%= f.submit '投稿' %>
 <% end %>
+
+<script>
+  let i = 1;
+  function addForm() {
+    let name_form = document.createElement('div');
+    let description_form = document.createElement('div');
+
+    let name_label = document.createElement('label');
+    name_label.for = `plan_destinations_attributes_${i}_name`;
+    name_label.innerHTML = 'Name';
+
+    let name_data = document.createElement('input');
+    name_data.type = 'text';
+    name_data.name = `plan[destinations_attributes][${i}][name]`;
+    name_data.id = `plan_destinations_attributes_${i}_name`;
+
+    let description_label = document.createElement('label');
+    description_label.for = `plan_destinations_attributes_${i}_description`;
+    description_label.innerHTML = 'Description';
+
+    let description_data = document.createElement('textarea');
+    description_data.name = `plan[destinations_attributes][${i}][description]`;
+    description_data.id = `plan_destinations_attributes_${i}_description`;
+
+    name_form.appendChild(name_label);
+    name_form.appendChild(name_data);
+    description_form.appendChild(description_label);
+    description_form.appendChild(description_data);
+
+    let parent = document.getElementById('plan-form');
+    parent.appendChild(name_form);
+    parent.appendChild(description_form);
+    i++;
+  }
+</script>
