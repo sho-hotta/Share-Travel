@@ -33,8 +33,11 @@
 <script>
   let i = 1;
   function addForm() {
+    // フォームを追加
     let name_form = document.createElement('div');
+    name_form.id = `name_form_${i}`;
     let description_form = document.createElement('div');
+    description_form.id = `description_form_${i}`;
 
     let name_label = document.createElement('label');
     name_label.for = `plan_destinations_attributes_${i}_name`;
@@ -61,6 +64,25 @@
     let parent = document.getElementById('plan-form');
     parent.appendChild(name_form);
     parent.appendChild(description_form);
+
+    // フォーム削除ボタンを追加
+    let delete_button = document.createElement('button');
+    delete_button.id = i;
+    delete_button.onclick = function() {deleteForm(this);}
+    delete_button.innerHTML = '削除';
+    parent.appendChild(delete_button);
+
     i++;
+  }
+
+  function deleteForm(target) {
+    let target_id = target.id;
+    let parent = document.getElementById('plan-form');
+    let name_form = document.getElementById(`name_form_${target_id}`);
+    let description_form = document.getElementById(`description_form_${target_id}`);
+    let button = document.getElementById(target_id);
+    parent.removeChild(name_form);
+    parent.removeChild(description_form);
+    parent.removeChild(button);
   }
 </script>
