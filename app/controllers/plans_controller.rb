@@ -14,7 +14,7 @@ class PlansController < ApplicationController
     @plan = current_user.plans.build(plan_params)
     if @plan.save
       flash[:success] = 'プランを投稿しました！'
-      redirect_to root_url
+      redirect_to @plan
     else
       render 'new'
     end
