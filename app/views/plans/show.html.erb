@@ -1,4 +1,35 @@
-<h1>Plans#show</h1>
-<p>Find me in app/views/plans/show.html.erb</p>
-<%= link_to '編集', edit_plan_path %>
-<%= link_to '削除', plan_path, method: :delete, data: { confirm: '削除してもよろしいですか？' }%>
+<div class='plan-head'>
+  <div>画像</div>
+  <div>
+    <h2><%= @plan.title %></h2>
+    <ul>
+      <li><%= @plan.prefecture %></li>
+      <li>タグ</li>
+      <li><%= @plan.updated_at %></li>
+    </ul>
+  </div>
+  <div>
+    <h4><%= @plan.user.name %></h4>
+    <% if current_user?(@plan.user) %>
+      <%= link_to '編集', edit_plan_path %>
+      <%= link_to '削除', plan_path, method: :delete, data: { confirm: '削除してもよろしいですか？' }%>
+    <% else %>
+      <%= link_to 'いいね', '#' %>
+      <%= link_to 'ブックマーク', '#' %>
+    <% end %>
+  </div>
+</div>
+<div class='plan-body'>
+  <ul class='destination-list'>
+    <% n = 0 %>
+    <% @destinations.each do |destination| %>
+      <li>
+        <ul class='destination-body'>
+          <li><%= n += 1 %> <%= destination.name %></li>
+          <li>画像</li>
+          <li><%= destination.description %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</div>

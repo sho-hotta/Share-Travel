@@ -54,3 +54,43 @@ header {
     }
   }
 }
+
+
+// プラン詳細
+
+.plan-head {
+  display: flex;
+  justify-content: space-around;
+}
+
+.plan-body {
+  .destination-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li {
+      .destination-body {
+        border: black solid 1px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+    }
+  }
+}
+
+
+// プラン一覧
+
+.plan-index {
+  padding: 1rem;
+  margin: 1rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5%;
+  border: black solid 1px;
+
+  ul {
+    border: black solid 1px;
+  }
+}

@@ -1,10 +1,15 @@
 class PlansController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
 
-  def index; end
+  def index
+    @plans = Plan.select_index
+  end
 
-  def show; end
+  def show
+    @destinations = @plan.destinations
+  end
 
   def new
     @plan = Plan.new
@@ -21,12 +26,9 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit
-    @plan = Plan.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
       flash[:success] = 'プランを編集しました！'
       redirect_to @plan
@@ -36,7 +38,6 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan = Plan.find(params[:id])
     @plan.destroy
     flash[:success] = 'プランを削除しました！'
     redirect_to root_url
@@ -46,6 +47,10 @@ class PlansController < ApplicationController
 
   def plan_params
     params.require(:plan).permit(:title, :region, :prefecture, destinations_attributes: %i[name description _destroy id])
+  end
+
+  def set_plan
+    @plan = Plan.find(params[:id])
   end
 
   def correct_user
