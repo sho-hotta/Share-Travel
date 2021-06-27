@@ -4,7 +4,10 @@ class PlansController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    @plan = Plan.find(params[:id])
+    @destinations = @plan.destinations
+  end
 
   def new
     @plan = Plan.new
