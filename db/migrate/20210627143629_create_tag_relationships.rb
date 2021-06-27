@@ -6,5 +6,8 @@ class CreateTagRelationships < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :tag_relationships, :plan_id
+    add_index :tag_relationships, :tag_id
+    add_index :tag_relationships, %i[plan_id tag_id], unique: true
   end
 end
