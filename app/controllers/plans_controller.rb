@@ -20,7 +20,9 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @plan = Plan.find(params[:id])
+  end
 
   private
 

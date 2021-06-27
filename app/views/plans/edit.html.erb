@@ -1,2 +1,90 @@
-<h1>Plans#edit</h1>
-<p>Find me in app/views/plans/edit.html.erb</p>
+<h1>プラン編集</h1>
+
+<%= form_with model: @plan, local: true do |f| %>
+  <%= render 'devise/shared/error_messages', resource: @plan %>
+  <div>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :region %>
+      <%= f.select :region, options_for_select(Plan.regions.keys) %>
+      <%= f.label :prefecture %>
+      <%= f.select :prefecture, options_for_select(Plan.prefectures.keys) %>
+    </div>
+  </div>
+  <%= f.fields_for :destinations do |destination| %>
+    <div class='plan-form'>
+      <div>
+        <%= destination.label :name %>
+        <%= destination.text_field :name %>
+      </div>
+      <div>
+        <%= destination.label :description %>
+        <%= destination.text_area :description %>
+      </div>
+    </div>
+  <% end %>
+  <input type='button' value='フォーム追加' onclick='addForm()'>
+  <%= f.submit '投稿' %>
+<% end %>
+
+<script>
+  let i = 1;
+  function addForm() {
+    // フォームを追加
+    let nameForm = document.createElement('div');
+    nameForm.id = `name_form_${i}`;
+    let descriptionForm = document.createElement('div');
+    descriptionForm.id = `description_form_${i}`;
+
+    let nameLabel = document.createElement('label');
+    nameLabel.for = `plan_destinations_attributes_${i}_name`;
+    nameLabel.innerHTML = 'Name';
+
+    let nameData = document.createElement('input');
+    nameData.type = 'text';
+    nameData.name = `plan[destinations_attributes][${i}][name]`;
+    nameData.id = `plan_destinations_attributes_${i}_name`;
+
+    let descriptionLabel = document.createElement('label');
+    descriptionLabel.for = `plan_destinations_attributes_${i}_description`;
+    descriptionLabel.innerHTML = 'Description';
+
+    let descriptionData = document.createElement('textarea');
+    descriptionData.name = `plan[destinations_attributes][${i}][description]`;
+    descriptionData.id = `plan_destinations_attributes_${i}_description`;
+
+    nameForm.appendChild(nameLabel);
+    nameForm.appendChild(nameData);
+    descriptionForm.appendChild(descriptionLabel);
+    descriptionForm.appendChild(descriptionData);
+
+    let parentList = document.querySelectorAll('.plan-form');
+    let parent = parentList.item(parentList.length - 1);
+    parent.appendChild(nameForm);
+    parent.appendChild(descriptionForm);
+
+    // フォーム削除ボタンを追加
+    let deleteButton = document.createElement('button');
+    deleteButton.id = i;
+    deleteButton.onclick = function() {deleteForm(this);}
+    deleteButton.innerHTML = '削除';
+    parent.appendChild(deleteButton);
+
+    i++;
+  }
+
+  function deleteForm(target) {
+    let targetId = target.id;
+    let parentList = document.querySelectorAll('.plan-form');
+    let parent = parentList.item(parentList.length - 1);
+    let nameForm = document.getElementById(`name_form_${targetId}`);
+    let descriptionForm = document.getElementById(`description_form_${targetId}`);
+    let button = document.getElementById(targetId);
+    parent.removeChild(nameForm);
+    parent.removeChild(descriptionForm);
+    parent.removeChild(button);
+  }
+</script>
