@@ -24,6 +24,10 @@
         <%= destination.label :description %>
         <%= destination.text_area :description %>
       </div>
+      <% if @plan.persisted? %>
+        <%= destination.label :削除 %>
+        <%= destination.check_box :_destroy %>
+      <% end %>
     </div>
   <% end %>
   <input type='button' value='フォーム追加' onclick='addForm()'>
