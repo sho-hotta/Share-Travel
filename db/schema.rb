@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_090616) do
+ActiveRecord::Schema.define(version: 2021_06_27_140857) do
 
   create_table "destinations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 30, null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 2021_06_25_090616) do
     t.index ["user_id", "created_at"], name: "index_plans_on_user_id_and_created_at"
     t.index ["user_id", "updated_at"], name: "index_plans_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "word", limit: 10, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["word"], name: "index_tags_on_word", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
