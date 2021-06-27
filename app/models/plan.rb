@@ -10,4 +10,6 @@ class Plan < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :region, presence: true
   validates :prefecture, presence: true
+
+  scope :select_index, -> { select(:id, :title, :prefecture, :updated_at) }
 end

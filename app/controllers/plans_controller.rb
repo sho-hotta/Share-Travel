@@ -2,7 +2,9 @@ class PlansController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
 
-  def index; end
+  def index
+    @plans = Plan.select_index
+  end
 
   def show
     @plan = Plan.find(params[:id])

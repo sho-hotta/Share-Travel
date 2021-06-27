@@ -78,3 +78,19 @@ header {
     }
   }
 }
+
+
+// プラン一覧
+
+.plan-index {
+  padding: 1rem;
+  margin: 1rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5%;
+  border: black solid 1px;
+
+  ul {
+    border: black solid 1px;
+  }
+}
