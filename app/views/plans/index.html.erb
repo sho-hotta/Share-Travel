@@ -2,7 +2,7 @@
   <% @plans.each do |plan| %>
     <ul>
       <li>画像</li>
-      <li><%= plan.title %></li>
+      <li><%= link_to "#{plan.title}", plan_path(plan) %></li>
       <li><%= plan.prefecture %></li>
     </ul>
   <% end %>
