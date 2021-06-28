@@ -5,6 +5,7 @@ class CreateLikes < ActiveRecord::Migration[6.1]
       t.references :plan, null: false, foreign_key: true
 
       t.timestamps
+      t.index %i[user_id plan_id], unique: true
     end
   end
 end
