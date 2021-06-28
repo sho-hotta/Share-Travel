@@ -31,7 +31,9 @@ class PlansController < ApplicationController
   def edit; end
 
   def update
+    tag_list = params[:plan][:word].split(nil)
     if @plan.update(plan_params)
+      @plan.save_tag(tag_list)
       flash[:success] = 'プランを編集しました！'
       redirect_to @plan
     else
