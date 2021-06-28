@@ -4,7 +4,11 @@
     <h2><%= @plan.title %></h2>
     <ul>
       <li><%= @plan.prefecture %></li>
-      <li>タグ</li>
+      <li>
+        <% @tags.each do |tag| %>
+          <%= link_to "#{tag.word}", '#' %>
+        <% end %>
+      </li>
       <li><%= @plan.updated_at %></li>
     </ul>
   </div>

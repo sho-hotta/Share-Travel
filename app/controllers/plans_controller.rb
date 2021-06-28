@@ -9,6 +9,7 @@ class PlansController < ApplicationController
 
   def show
     @destinations = @plan.destinations
+    @tags = @plan.tags
   end
 
   def new
