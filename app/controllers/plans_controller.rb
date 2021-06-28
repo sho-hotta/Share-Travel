@@ -29,7 +29,9 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @current_tags = @plan.tags.pluck(:word).join(' ')
+  end
 
   def update
     tag_list = params[:plan][:word].split(nil)

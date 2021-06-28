@@ -33,7 +33,7 @@
   <input type='button' value='フォーム追加' onclick='addForm()'>
   <div>
     <%= f.label :word %>
-    <%= f.text_field :word, placeholder: '例)温泉 グルメ', value: @plan.tags.pluck(:word).join(' ') %>
+    <%= f.text_field :word, placeholder: '例)温泉 グルメ', value: @current_tags %>
   </div>
   <%= f.submit '投稿' %>
 <% end %>
