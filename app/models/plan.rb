@@ -5,6 +5,8 @@ class Plan < ApplicationRecord
 
   has_many :destinations, dependent: :destroy
   accepts_nested_attributes_for :destinations, allow_destroy: true
+  has_many :tag_relationships, dependent: :destroy
+  has_many :tags, through: :tag_relationships
   belongs_to :user
 
   validates :title, presence: true, length: { maximum: 30 }
@@ -12,4 +14,19 @@ class Plan < ApplicationRecord
   validates :prefecture, presence: true
 
   scope :select_index, -> { select(:id, :title, :prefecture, :updated_at) }
+
+  def save_tag(add_tags)
+    current_tags = self.tags.pluck(:word) unless self.tags.nil?
+    old_tags = current_tags - add_tags
+    new_tags = add_tags - current_tags
+
+    old_tags.each do |old_tag|
+      self.tags.delete Tag.find_by(word: old_tag)
+    end
+
+    new_tags.each do |new_tag|
+      post_tag = Tag.find_or_create_by(word: new_tag)
+      self.tags << post_tag
+    end
+  end
 end

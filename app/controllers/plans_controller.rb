@@ -9,6 +9,7 @@ class PlansController < ApplicationController
 
   def show
     @destinations = @plan.destinations
+    @tags = @plan.tags
   end
 
   def new
@@ -18,7 +19,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = current_user.plans.build(plan_params)
+    tag_list = params[:plan][:word].split(nil)
     if @plan.save
+      @plan.save_tag(tag_list)
       flash[:success] = 'プランを投稿しました！'
       redirect_to @plan
     else
@@ -26,10 +29,14 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @current_tags = @plan.tags.pluck(:word).join(' ')
+  end
 
   def update
+    tag_list = params[:plan][:word].split(nil)
     if @plan.update(plan_params)
+      @plan.save_tag(tag_list)
       flash[:success] = 'プランを編集しました！'
       redirect_to @plan
     else
