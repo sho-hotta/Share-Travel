@@ -18,7 +18,9 @@ class PlansController < ApplicationController
 
   def create
     @plan = current_user.plans.build(plan_params)
+    tag_list = params[:plan][:word].split(nil)
     if @plan.save
+      @plan.save_tag(tag_list)
       flash[:success] = 'プランを投稿しました！'
       redirect_to @plan
     else
