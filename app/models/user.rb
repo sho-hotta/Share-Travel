@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :like_plans, through: :likes, source: :plan
 
   validates :name, presence: true, length: { maximum: 20 }
+
+  def like?(plan)
+    self.like_plans.include?(plan)
+  end
 end
