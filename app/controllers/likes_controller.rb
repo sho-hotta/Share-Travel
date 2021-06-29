@@ -7,7 +7,7 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @unlike_plan = Like.find_by(plan_id: params[:plan_id], user_id: current_user.id).plan
+    @unlike_plan = Like.find_by(plan_id: params[:plan_id], user_id: current_user.id)
     @unlike_plan.destroy
   end
 end
