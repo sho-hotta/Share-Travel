@@ -1,0 +1,7 @@
+<div>
+  <% if current_user.like?(plan) %>
+    <%= link_to 'いいね解除', plan_like_path(@plan), method: :delete %>
+  <% else %>
+    <%= link_to 'いいね', plan_likes_path(@plan), method: :post %>
+  <% end %>
+</div>

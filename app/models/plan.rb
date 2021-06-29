@@ -7,6 +7,8 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :destinations, allow_destroy: true
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
+  has_many :likes, dependent: :destroy
+  has_many :users, through: :likes
   belongs_to :user
 
   validates :title, presence: true, length: { maximum: 30 }

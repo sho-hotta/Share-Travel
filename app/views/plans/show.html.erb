@@ -18,7 +18,7 @@
       <%= link_to '編集', edit_plan_path %>
       <%= link_to '削除', plan_path, method: :delete, data: { confirm: '削除してもよろしいですか？' }%>
     <% else %>
-      <%= link_to 'いいね', '#' %>
+      <%= render 'likes/like', plan: @plan %>
       <%= link_to 'ブックマーク', '#' %>
     <% end %>
   </div>
