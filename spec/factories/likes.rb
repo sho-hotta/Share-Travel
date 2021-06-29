@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :like do
-    user { nil }
-    plan { nil }
+    plan
+    user { plan.user }
   end
 end
