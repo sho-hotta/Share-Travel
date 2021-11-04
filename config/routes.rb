@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   root 'plans#index'
   resources :plans do
     resources :likes, only: %i[create destroy]
+    resources :bookmarks, only: %i[create destroy]
   end
 end
