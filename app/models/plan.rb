@@ -9,6 +9,8 @@ class Plan < ApplicationRecord
   has_many :tags, through: :tag_relationships
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
+  has_many :bookmarks, dependent: :destroy
+  has_many :users, through: :bookmarks
   belongs_to :user
 
   validates :title, presence: true, length: { maximum: 30 }

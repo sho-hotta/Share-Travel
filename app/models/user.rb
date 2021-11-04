@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :plans, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_plans, through: :likes, source: :plan
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_plans, through: :bookmarks, source: :plan
 
   validates :name, presence: true, length: { maximum: 20 }
 
