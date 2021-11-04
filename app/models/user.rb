@@ -16,6 +16,10 @@ class User < ApplicationRecord
     self.like_plans.include?(plan)
   end
 
+  def bookmark?(plan)
+    self.bookmark_plans.include?(plan)
+  end
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.name = 'ゲスト'
