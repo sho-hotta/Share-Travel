@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :bookmark do
-    user { nil }
-    plan { nil }
+    plan
+    user { plan.user }
   end
 end
