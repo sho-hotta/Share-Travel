@@ -19,7 +19,7 @@
       <%= link_to '削除', plan_path, method: :delete, data: { confirm: '削除してもよろしいですか？' }%>
     <% else %>
       <%= render 'likes/like', plan: @plan %>
-      <%= link_to 'ブックマーク', '#' %>
+      <%= render 'bookmarks/bookmark', plan: @plan %>
     <% end %>
   </div>
 </div>

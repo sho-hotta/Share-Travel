@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy bookmarks]
   before_action :correct_user, only: %i[edit update destroy]
   before_action :set_plan, only: %i[show edit update destroy]
 
@@ -48,6 +48,10 @@ class PlansController < ApplicationController
     @plan.destroy
     flash[:success] = 'プランを削除しました！'
     redirect_to root_url
+  end
+
+  def bookmarks
+    @bookmark_plans = current_user.bookmark_plans.select_index
   end
 
   private

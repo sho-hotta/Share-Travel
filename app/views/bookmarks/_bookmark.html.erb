@@ -1,0 +1,7 @@
+<div>
+  <% if current_user.bookmark?(plan) %>
+    <%= link_to 'ブックマーク解除', plan_bookmark_path(plan), method: :delete %>
+  <% else %>
+    <%= link_to 'ブックマーク', plan_bookmarks_path(plan), method: :post %>
+  <% end %>
+</div>
