@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   resources :plans do
     resources :likes, only: %i[create destroy]
     resources :bookmarks, only: %i[create destroy]
+    collection do
+      get :bookmarks
+    end
   end
 end
